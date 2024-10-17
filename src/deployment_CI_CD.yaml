@@ -1,0 +1,31 @@
+# Final Deployment and CI/CD Pipeline
+
+    # Set up a continuous integration/continuous deployment (CI/CD) pipeline to automatically deploy new versions of the app. Use GitHub Actions or Firebase CI/CD to automate testing and deployment after pushing changes.
+
+
+
+
+
+
+name: Firebase Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npm run build
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

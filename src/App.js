@@ -17,3 +17,19 @@ function App() {
 }
 
 export default App;
+
+
+import { requestForToken, onMessageListener } from './firebase';
+
+useEffect(() => {
+  requestForToken();
+}, []);
+
+// Handle incoming messages
+onMessageListener()
+  .then((payload) => {
+    console.log('Message received: ', payload);
+    // Show notification
+  })
+  .catch((err) => console.log('Failed to receive message: ', err));
+

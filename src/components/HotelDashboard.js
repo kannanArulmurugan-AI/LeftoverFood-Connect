@@ -84,4 +84,13 @@ const HotelDashboard = () => {
 };
 
 export default HotelDashboard;
+// Store Hotel Location: When hotel owners sign up or add food items, store their location in Firestore so you can show nearby hotels to customers.
+await firestore.collection('hotels').add({
+  name: 'Hotel XYZ',
+  location: {
+    lat: 12.9716,
+    lng: 77.5946,
+  },
+});
+
 
